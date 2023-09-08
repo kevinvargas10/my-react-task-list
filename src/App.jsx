@@ -1,7 +1,10 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import TaskList from "./components/TaskList";
-import useTaskManager from "./hooks/useTaskManager";
+import Home from "./components/Home";
+import Tareas from "./components/Tareas";
+import SobreNosotros from "./components/SobreNosotros";
+import Menu from "./components/Menu";
 
 function App() {
   const initialTasks = [
@@ -10,22 +13,22 @@ function App() {
     { id: 3, name: "Entregar pedidos pendientes", completed: false },
   ];
 
-  const { tasks, createTask, deleteTask, updateTask } = useTaskManager(
-    initialTasks
-  );
-
   return (
-    <div>
-      <Header />
-      <TaskList
-        tasks={tasks}
-        createTask={createTask}
-        deleteTask={deleteTask}
-        updateTask={updateTask}
-      />
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Menu />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/tareas"
+            element={<Tareas tasks={initialTasks} />}
+          />
+          <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
-

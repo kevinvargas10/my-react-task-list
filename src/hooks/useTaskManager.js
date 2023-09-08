@@ -19,8 +19,14 @@ const useTaskManager = (initialTasks) => {
     setTasks(updatedTasks);
   };
 
-  return { tasks, createTask, deleteTask, updateTask };
+  return {
+    tasks,
+    createTask,
+    deleteTask,
+    updateTask,
+  };
 };
 
 export default useTaskManager;
+
 
